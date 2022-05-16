@@ -14,7 +14,7 @@ public class Main {
 
         if (multiWall.equalsIgnoreCase("Y")) //run for multiple walls
         {
-            System.out.print("How many walls do you need to paint: ");
+            System.out.print("How many walls do you need to paint?: ");
             int noOfWalls = myScanner.nextInt();
             System.out.print("Please enter the coverage of your paint in square meters per litre: ");
             double paintCoverage = myScanner.nextDouble();
@@ -46,19 +46,27 @@ public class Main {
             else if (multiBucket.equalsIgnoreCase("Y")) //run for multiple bucket sizes
             {
                 System.out.println("How many sizes of buckets are available to you?");
-                int x = myScanner.nextInt();
-                double[] availableBucketSizesArray = new double[x];
+                int numBucketSizes = myScanner.nextInt();
+                double[] availableBucketSizesArray = new double[numBucketSizes];
                 System.out.println("Please enter the sizes of the available paint buckets in litres:");
-                for (int i = 0; i < x; i++) //loop to get the sizes of buckets
+                for (int i = 0; i < numBucketSizes; i++) //loop to get the sizes of buckets
                 {
                     availableBucketSizesArray[i] = myScanner.nextInt();
                 }
                 Arrays.sort(availableBucketSizesArray); //sorts the array from smallest to largest
-                System.out.println("These are your options:");
+                System.out.println("These are the amounts of paint buckets you require:");
 
-                for (int t = x; t>=1; --t) {
-                    double orderedPaint = neededPaint/availableBucketSizesArray[t-1];
-                    System.out.println(Math.ceil(orderedPaint) + " x "+ availableBucketSizesArray[t-1] + "litre buckets");
+
+                for (int t = numBucketSizes; t>=1; --t) {
+                    if (t==1){
+                        neededPaint = neededPaint/availableBucketSizesArray[t-1];
+                        System.out.println(Math.ceil(neededPaint) + " x "+ availableBucketSizesArray[t-1] + " litre buckets");
+                    }
+                    else {
+
+                        neededPaint = neededPaint / availableBucketSizesArray[t - 1];
+                        System.out.println((Math.floor(neededPaint)) + " x " + availableBucketSizesArray[t - 1] + " litre buckets");
+                    }
                 }
 
             }
@@ -103,11 +111,19 @@ public class Main {
                     availableBucketSizesArray[i] = myScanner.nextInt();
                 }
                 Arrays.sort(availableBucketSizesArray); //sorts the array from smallest to largest
-                System.out.println("These are your options:");
+                System.out.println("These are the amounts of paint buckets you require:");
+
 
                 for (int t = numBucketSizes; t>=1; --t) {
-                    double orderedPaint = neededPaint/availableBucketSizesArray[t-1];
-                    System.out.println(Math.ceil(orderedPaint) + " x "+ availableBucketSizesArray[t-1] + " litre buckets");
+                    if (t==1){
+                        neededPaint = neededPaint/availableBucketSizesArray[t-1];
+                        System.out.println(Math.ceil(neededPaint) + " x "+ availableBucketSizesArray[t-1] + " litre buckets");
+                    }
+                    else {
+
+                        neededPaint = neededPaint / availableBucketSizesArray[t - 1];
+                        System.out.println(Math.floor(neededPaint) + " x " + availableBucketSizesArray[t - 1] + " litre buckets");
+                    }
                 }
 
             }
